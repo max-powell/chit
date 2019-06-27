@@ -15,8 +15,7 @@ function App() {
           exact path='/'
           render={routerProps => (
             <Layout
-              routerProps={routerProps}
-              child={<DashboardContainer />}
+              child={<DashboardContainer routerProps={routerProps} />}
             />
           )}
         />
@@ -25,7 +24,7 @@ function App() {
           render={routerProps => (
             <Layout
               child={
-                <LoginContainer routerProps={routerProps}/>
+                <LoginContainer routerProps={routerProps} />
               }
             />
           )}

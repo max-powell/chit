@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import ChatList from '../components/ChatList'
+import ChatDisplay from '../components/ChatDisplay'
 
 class DashboardContainer extends Component {
 
@@ -31,7 +32,7 @@ class DashboardContainer extends Component {
 
     return (
       selectedChat
-      ? null
+      ? <ChatDisplay chat={selectedChat} />
       : <ChatList chats={chats} selectChat={selectChat} />
     )
   }

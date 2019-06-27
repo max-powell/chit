@@ -5,7 +5,7 @@ const ChatList = ({chats, selectChat}) => (
     <p>Your chats:</p>
     {
       chats.length > 0
-      ? chats.map(c => <p key={c.id} onClick={selectChat}>{c.title}</p>)
+      ? chats.map(c => <p key={c.id} onClick={() => selectChat(c)}>{c.title}</p>)
       : <p>You have no chats</p>
     }
   </div>

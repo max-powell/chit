@@ -1,3 +1,8 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 .App-header {
   background-color: #282c34;
   height: 15vh;
@@ -9,10 +14,49 @@
   text-align: center;
 }
 
+#content-pane {
+  height: 85vh
+}
+
 .login {
   height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 40vw
+}
+
+#chat-display {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#chat-window {
+  border: 1px solid black;
+  overflow-y: scroll;
+  height: 60vh;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  width: 50%;
+  margin: 1vh 2vw;
+  border: 2px solid blue;
+  background-color: #bebeff;
+  padding: 1vh
+}
+
+.current-user {
+  background-color: #ade2ad;
+  border-color: green;
+  align-self: flex-end;
+}
+
+#new-message-form {
+  width: 60vw
 }
