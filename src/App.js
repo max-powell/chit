@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Layout from './components/Layout'
 import LoginContainer from './containers/LoginContainer'
+import DashboardContainer from './containers/DashboardContainer'
 
 import './App.css'
 
@@ -15,7 +16,7 @@ function App() {
           render={routerProps => (
             <Layout
               routerProps={routerProps}
-              child={null}
+              child={<DashboardContainer />}
             />
           )}
         />
