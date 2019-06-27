@@ -5,7 +5,7 @@ import Header from './Header';
 const Layout = ({child}) => (
   <Fragment>
     <Header />
-    {child}
+    <div id='content-pane'>{child}</div>
   </Fragment>
 )
 

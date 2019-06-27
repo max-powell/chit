@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Layout from './components/Layout'
+import LoginContainer from './containers/LoginContainer'
 
 import './App.css'
 
@@ -22,8 +23,9 @@ function App() {
           path='/login'
           render={routerProps => (
             <Layout
-              routerProps={routerProps}
-              child={null}
+              child={
+                <LoginContainer routerProps={routerProps}/>
+              }
             />
           )}
         />

@@ -8,3 +8,11 @@
   color: white;
   text-align: center;
 }
+
+.login {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 40vw
+}
