@@ -7,6 +7,8 @@ const Message = ({message}) => {
     className += ' current-user'
   }
 
+  debugger;
+
   return (
     <div className={className}>
       <p>{message.user.username}</p>
