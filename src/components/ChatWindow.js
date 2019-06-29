@@ -2,10 +2,10 @@ import React from 'react'
 
 import Message from './Message'
 
-const ChatWindow = ({messages}) => (
+const ChatWindow = ({messages, userId}) => (
   <div id='chat-window'>
     {
-      messages.map(m => <Message key={m.id} message={m}/>)
+      messages.map(m => <Message key={m.id} message={m} userId={userId} />)
     }
   </div>
 )
