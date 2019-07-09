@@ -27,11 +27,14 @@ class DashboardContainer extends Component {
 
   selectChat = selectedChat => {this.setState({selectedChat})}
 
-  handleReceviedMessage = message => {
+  handleReceivedMessage = message => {
     const chats = [...this.state.chats]
     const chat = chats.find(c => c.id === message.chat_id)
     chat.messages.push(message)
     this.setState({chats})
+
+    const chatWindow = document.querySelector('#chat-window')
+    chat && chatWindow.scroll(0, chatWindow.scrollHeight)
   }
 
   render() {
@@ -41,14 +44,14 @@ class DashboardContainer extends Component {
     }
 
     const { userId, chats, selectedChat } = this.state
-    const { selectChat, handleReceviedMessage } = this
+    const { selectChat, handleReceivedMessage } = this
 
     return (
       selectedChat
       ? <ChatDisplay
         chat={selectedChat}
         userId={userId}
-        handleReceviedMessage={handleReceviedMessage}
+        handleReceivedMessage={handleReceivedMessage}
       />
       : <ChatList
         chats={chats}
