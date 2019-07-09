@@ -32,9 +32,6 @@ class DashboardContainer extends Component {
     const chat = chats.find(c => c.id === message.chat_id)
     chat.messages.push(message)
     this.setState({chats})
-
-    const chatWindow = document.querySelector('#chat-window')
-    chat && chatWindow.scroll(0, chatWindow.scrollHeight)
   }
 
   render() {
