@@ -30,8 +30,17 @@ class DashboardContainer extends Component {
   handleReceivedMessage = message => {
     const chats = [...this.state.chats]
     const chat = chats.find(c => c.id === message.chat_id)
-    chat.messages.push(message)
-    this.setState({chats})
+    const updatedChat = {
+      ...chat,
+      messages: [...chat.messages, message]
+    }
+
+    debugger;
+
+    this.setState({
+      chats: [...this.state.chats.filter(c => c.id !== chat.id), updatedChat],
+      selectedChat: updatedChat
+    })
   }
 
   render() {

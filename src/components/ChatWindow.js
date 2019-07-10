@@ -7,7 +7,8 @@ class ChatWindow extends Component {
   chatWindowRef = React.createRef()
 
   state = {
-    isMaxScrolled: false
+    isMaxScrolled: false,
+    unreadMessages: false
   }
 
   scrollToBottom = () => {
@@ -25,8 +26,13 @@ class ChatWindow extends Component {
     this.scrollToBottom()
   }
 
-  componentDidUpdate () {
-    this.state.isMaxScrolled && this.scrollToBottom()
+  componentDidUpdate (prevProps) {
+    if (this.state.isMaxScrolled) {
+      this.scrollToBottom()
+    } else {
+      prevProps.messages.length < this.props.messages.length &&
+      this.setState({unreadMessages: true})
+    }
   }
 
   render() {
