@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Message = ({message}) => {
+const Message = ({message, userId}) => {
 
   let className = 'message'
-  if (message['current_user?']) {
+  if (message.user.id === userId) {
     className += ' current-user'
   }
 
