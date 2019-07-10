@@ -35,6 +35,7 @@
 }
 
 #chat-window {
+  position: relative;
   border: 1px solid black;
   overflow-y: scroll;
   height: 60vh;
@@ -59,4 +60,14 @@
 
 #new-message-form {
   width: 60vw
+}
+
+.unread-alert {
+  position: fixed;
+  width: 58vw;
+  background-color: #ec8686;
+  border: 2px solid red;
+  text-align: center;
+  font-weight: bold;
+  margin: 1vh;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
 import Message from './Message'
+import UnreadMessagesAlert from './UnreadMessagesAlert'
 
 class ChatWindow extends Component {
 
@@ -20,6 +21,11 @@ class ChatWindow extends Component {
   handleScroll = ({target}) => {
     let isMaxScrolled = target.scrollHeight - target.scrollTop === target.clientHeight
     this.setState({isMaxScrolled})
+    if (this.state.unreadMessages && isMaxScrolled) {
+      this.setState({
+        unreadMessages: false
+      })
+    }
   }
 
   componentDidMount () {
@@ -38,7 +44,8 @@ class ChatWindow extends Component {
 
   render() {
     const { messages, userId, chat, handleReceivedMessage } = this.props
-    const { chatWindowRef, handleScroll } = this
+    const { unreadMessages } = this.state
+    const { chatWindowRef, handleScroll, scrollToBottom } = this
 
     return (
       <div id='chat-window' ref={chatWindowRef} onScroll={handleScroll}>
@@ -49,6 +56,10 @@ class ChatWindow extends Component {
             messages.map(m => <Message key={m.id} message={m} userId={userId} />)
           }
         </ActionCableConsumer>
+        {
+          unreadMessages &&
+          <UnreadMessagesAlert handleClick={scrollToBottom} />
+        }
       </div>
     )
   }
