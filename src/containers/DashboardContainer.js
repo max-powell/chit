@@ -35,8 +35,6 @@ class DashboardContainer extends Component {
       messages: [...chat.messages, message]
     }
 
-    debugger;
-
     this.setState({
       chats: [...this.state.chats.filter(c => c.id !== chat.id), updatedChat],
       selectedChat: updatedChat

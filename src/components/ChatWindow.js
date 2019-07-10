@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ActionCableConsumer } from 'react-actioncable-provider'
 
 import Message from './Message'
 
@@ -36,14 +37,18 @@ class ChatWindow extends Component {
   }
 
   render() {
-    const { messages, userId } = this.props
+    const { messages, userId, chat, handleReceivedMessage } = this.props
     const { chatWindowRef, handleScroll } = this
 
     return (
       <div id='chat-window' ref={chatWindowRef} onScroll={handleScroll}>
-        {
-          messages.map(m => <Message key={m.id} message={m} userId={userId} />)
-        }
+        <ActionCableConsumer
+          channel={{channel: 'MessagesChannel', chat_id: chat.id}}
+          onReceived={handleReceivedMessage}>
+          {
+            messages.map(m => <Message key={m.id} message={m} userId={userId} />)
+          }
+        </ActionCableConsumer>
       </div>
     )
   }
