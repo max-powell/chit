@@ -6,9 +6,18 @@ class ChatWindow extends Component {
 
   chatWindowRef = React.createRef()
 
+  state = {
+    isMaxScrolled: false
+  }
+
   scrollToBottom = () => {
     const { current: chatWindow } = this.chatWindowRef
     chatWindow.scrollTo(0, chatWindow.scrollHeight)
+  }
+
+  handleScroll = ({target}) => {
+    let isMaxScrolled = target.scrollHeight - target.scrollTop === target.clientHeight
+    this.setState({isMaxScrolled})
   }
 
   componentDidMount () {
@@ -16,16 +25,16 @@ class ChatWindow extends Component {
     this.scrollToBottom()
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
-    this.scrollToBottom()
+  componentDidUpdate () {
+    this.state.isMaxScrolled && this.scrollToBottom()
   }
 
   render() {
     const { messages, userId } = this.props
-    const { chatWindowRef } = this
+    const { chatWindowRef, handleScroll } = this
 
     return (
-      <div id='chat-window' ref={chatWindowRef}>
+      <div id='chat-window' ref={chatWindowRef} onScroll={handleScroll}>
         {
           messages.map(m => <Message key={m.id} message={m} userId={userId} />)
         }
