@@ -52,6 +52,10 @@
   padding: 1vh
 }
 
+.message :first-child {
+  font-weight: bold;
+}
+
 .current-user {
   background-color: #ade2ad;
   border-color: green;
