@@ -56,6 +56,11 @@
   font-weight: bold;
 }
 
+.message :last-child {
+  text-align: right;
+  font-style: oblique;
+}
+
 .current-user {
   background-color: #ade2ad;
   border-color: green;

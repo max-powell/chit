@@ -29,7 +29,6 @@ class ChatWindow extends Component {
   }
 
   componentDidMount () {
-    const { current: chatWindow } = this.chatWindowRef
     this.scrollToBottom()
   }
 
