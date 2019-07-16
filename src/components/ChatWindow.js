@@ -9,7 +9,7 @@ class ChatWindow extends Component {
   chatWindowRef = React.createRef()
 
   state = {
-    isMaxScrolled: false,
+    isMaxScrolled: true,
     unreadMessages: false
   }
 

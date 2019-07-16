@@ -55,6 +55,7 @@ class DashboardContainer extends Component {
       ? <ChatDisplay
         chat={selectedChat}
         userId={userId}
+        selectChat={selectChat}
         handleReceivedMessage={handleReceivedMessage}
       />
       : <ChatList
