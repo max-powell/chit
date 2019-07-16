@@ -1,7 +1,7 @@
 import React from 'react'
 
 const YourChats = ({chats, selectChat}) => (
-  <div>
+  <div className='chats'>
     <h3>Your chats:</h3>
     {
       chats.length > 0

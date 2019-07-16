@@ -26,6 +26,19 @@
   padding-left: 40vw
 }
 
+#dashboard {
+  height: 100%;
+  padding: 5% 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.chats {
+  width: 30%;
+  border: 1px solid black;
+}
+
 #chat-display {
   height: 100%;
   display: flex;
