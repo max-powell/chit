@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ChatList from '../components/ChatList'
+import Dashboard from '../components/Dashboard'
 import ChatDisplay from '../components/ChatDisplay'
 
 class DashboardContainer extends Component {
@@ -41,6 +41,13 @@ class DashboardContainer extends Component {
     })
   }
 
+  addChat = chat => {
+    this.setState({
+      chats: [...this.state.chats, chat],
+    })
+    this.selectChat(chat)
+  }
+
   render() {
 
     if (!localStorage.getItem('token')) {
@@ -48,7 +55,7 @@ class DashboardContainer extends Component {
     }
 
     const { userId, chats, selectedChat } = this.state
-    const { selectChat, handleReceivedMessage } = this
+    const { selectChat, handleReceivedMessage, addChat } = this
 
     return (
       selectedChat
@@ -58,9 +65,10 @@ class DashboardContainer extends Component {
         selectChat={selectChat}
         handleReceivedMessage={handleReceivedMessage}
       />
-      : <ChatList
+    : <Dashboard
         chats={chats}
         selectChat={selectChat}
+        addChat={addChat}
       />
     )
   }

@@ -1,14 +1,14 @@
 import React from 'react'
 
-const ChatList = ({chats, selectChat}) => (
-  <div id='dashboard'>
-    <p>Your chats:</p>
+const YourChats = ({chats, selectChat}) => (
+  <div className='chats'>
+    <h3>Your chats:</h3>
     {
       chats.length > 0
       ? chats.map(c => <p key={c.id} onClick={() => selectChat(c)}>{c.title}</p>)
       : <p>You have no chats</p>
     }
-  </div>
+</div>
 )
 
-export default ChatList
+export default YourChats
