@@ -41,6 +41,13 @@ class DashboardContainer extends Component {
     })
   }
 
+  addChat = chat => {
+    this.setState({
+      chats: [...this.state.chats, chat],
+    })
+    this.selectChat(chat)
+  }
+
   render() {
 
     if (!localStorage.getItem('token')) {
@@ -48,7 +55,7 @@ class DashboardContainer extends Component {
     }
 
     const { userId, chats, selectedChat } = this.state
-    const { selectChat, handleReceivedMessage } = this
+    const { selectChat, handleReceivedMessage, addChat } = this
 
     return (
       selectedChat
@@ -61,6 +68,7 @@ class DashboardContainer extends Component {
     : <Dashboard
         chats={chats}
         selectChat={selectChat}
+        addChat={addChat}
       />
     )
   }

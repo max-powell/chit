@@ -34,9 +34,35 @@
   justify-content: space-around;
 }
 
-.chats {
+#dashboard > * {
   width: 30%;
+  height: 50%;
   border: 1px solid black;
+  position: relative;
+}
+
+.dashboard-item-title {
+  margin-left: 2%;
+}
+
+.new-chat-form > * {
+  display: block;
+  margin: 5% 2%;
+}
+
+.scrollable {
+  overflow-y: scroll;
+}
+
+input[type='checkbox'] {
+  margin-right: 5%;
+}
+
+.new-chat-form button {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 #chat-display {
