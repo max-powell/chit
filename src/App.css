@@ -42,9 +42,10 @@
 
 #dashboard > * {
   width: 30%;
-  height: 70%;
+  height: 85%;
   border: 1px solid black;
   position: relative;
+  overflow: hidden;
 }
 
 h3:first-child.dashboard-item-title {
@@ -56,6 +57,10 @@ h3:first-child.dashboard-item-title {
   margin-left: 2%;
 }
 
+.new-chat-form {
+  height: 90%;
+}
+
 .new-chat-form > * {
   display: block;
   margin: 5% 2%;
@@ -64,6 +69,7 @@ h3:first-child.dashboard-item-title {
 .scrollable {
   position: relative;
   overflow-y: scroll;
+  max-height: 50%;
 }
 
 input[type='checkbox'] {
@@ -71,10 +77,11 @@ input[type='checkbox'] {
 }
 
 .new-chat-form button {
-  position: absolute;
+  /* position: absolute;
   bottom: 2%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%); */
+  position: relative;
 }
 
 #chat-display {
