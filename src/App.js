@@ -19,17 +19,17 @@ function App() {
           <Route
             exact path='/'
             render={routerProps => (
-              <Layout
-                child={<DashboardContainer routerProps={routerProps} />}
-              />
+              <Layout>
+                <DashboardContainer routerProps={routerProps} />
+              </Layout>
             )}
           />
           <Route
             path='/login'
             render={routerProps => (
-              <Layout
-                child={<LoginContainer routerProps={routerProps} />}
-              />
+              <Layout>
+                <LoginContainer routerProps={routerProps} />
+              </Layout>
             )}
           />
         </Router>

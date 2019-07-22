@@ -57,7 +57,11 @@ class NewChatContainer extends Component {
 
     fetch('http://localhost:3000/api/v1/chats/', config)
       .then(res => res.json())
-      .then(chat => this.props.addChat(chat))
+      .then(chat => {
+        chat.error
+        ? alert(chat.error)
+        : this.props.addChat(chat)
+      })
   }
 
   render() {

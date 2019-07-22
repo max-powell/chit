@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
 const Checkbox = ({user, handleCheckboxChange}) => (
-  <Fragment>
+  <div className='checkbox-option'>
     <input
       type='checkbox'
       id={user.username}
@@ -9,7 +9,7 @@ const Checkbox = ({user, handleCheckboxChange}) => (
       onChange={handleCheckboxChange}
     />
     <label htmlFor={user.username}>{user.username}</label>
-  </Fragment>
+  </div>
 )
 
 export default Checkbox

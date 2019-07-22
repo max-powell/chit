@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import Dashboard from '../components/Dashboard'
 import ChatDisplay from '../components/ChatDisplay'
+import LogoutButton from '../components/LogoutButton'
 
 class DashboardContainer extends Component {
 
@@ -48,28 +49,40 @@ class DashboardContainer extends Component {
     this.selectChat(chat)
   }
 
+  pushToLogin = () => {
+    this.props.routerProps.history.push('/login')
+  }
+
+  logout = () => {
+    localStorage.removeItem('token')
+    this.pushToLogin()
+  }
+
   render() {
 
+    const { userId, chats, selectedChat } = this.state
+    const { selectChat, handleReceivedMessage, addChat, pushToLogin, logout } = this
+
     if (!localStorage.getItem('token')) {
-      this.props.routerProps.history.push('/login')
+      pushToLogin()
     }
 
-    const { userId, chats, selectedChat } = this.state
-    const { selectChat, handleReceivedMessage, addChat } = this
-
     return (
-      selectedChat
-      ? <ChatDisplay
+      <Fragment>
+        {selectedChat
+        ? <ChatDisplay
         chat={selectedChat}
         userId={userId}
         selectChat={selectChat}
         handleReceivedMessage={handleReceivedMessage}
-      />
-    : <Dashboard
+        />
+        : <Dashboard
         chats={chats}
         selectChat={selectChat}
         addChat={addChat}
-      />
+        />}
+        <LogoutButton logout={logout} />
+      </Fragment>
     )
   }
 
