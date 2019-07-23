@@ -15,7 +15,7 @@ class NewChatContainer extends Component {
       headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
     }
 
-    fetch('http://localhost:3000/api/v1/users', config)
+    fetch('https://chit-api.herokuapp.com/api/v1/users', config)
       .then(res => res.json())
       .then(users => this.setState({users}))
   }
@@ -55,7 +55,7 @@ class NewChatContainer extends Component {
       })
     }
 
-    fetch('http://localhost:3000/api/v1/chats/', config)
+    fetch('https://chit-api.herokuapp.com/api/v1/chats/', config)
       .then(res => res.json())
       .then(chat => {
         chat.error

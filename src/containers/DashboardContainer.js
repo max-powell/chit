@@ -17,11 +17,11 @@ class DashboardContainer extends Component {
       headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
     }
 
-    fetch('http://localhost:3000/api/v1/profile', config)
+    fetch('https://chit-api.herokuapp.com/api/v1/profile', config)
       .then(res => res.json())
       .then(({id: userId}) => this.setState({userId}))
 
-    fetch('http://localhost:3000/api/v1/chats', config)
+    fetch('https://chit-api.herokuapp.com/api/v1/chats', config)
       .then(res => res.json())
       .then(chats => this.setState({chats}))
   }

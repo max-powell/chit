@@ -24,7 +24,7 @@ class NewMessageContainer extends Component {
       })
     }
 
-    fetch(`http://localhost:3000/api/v1/chats/${this.props.chat.id}/messages`, config)
+    fetch(`https://chit-api.herokuapp.com/api/v1/chats/${this.props.chat.id}/messages`, config)
       .then(() =>this.setState({text: ''}))
   }
 

@@ -18,7 +18,7 @@ class LoginContainer extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    let route = 'http://localhost:3000/api/v1/'
+    let route = 'https://chit-api.herokuapp.com/api/v1/'
     e.target.name === 'login'
     ? route += 'login'
     : route += 'users'
