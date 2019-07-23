@@ -1,68 +1,23 @@
-import React, { Component } from 'react'
+import React, { forwardRef } from 'react'
 import { ActionCableConsumer } from 'react-actioncable-provider'
 
 import Message from './Message'
 import UnreadMessagesAlert from './UnreadMessagesAlert'
 
-class ChatWindow extends Component {
-
-  chatWindowRef = React.createRef()
-
-  state = {
-    isMaxScrolled: true,
-    unreadMessages: false
-  }
-
-  scrollToBottom = () => {
-    const { current: chatWindow } = this.chatWindowRef
-    chatWindow.scrollTo(0, chatWindow.scrollHeight)
-  }
-
-  handleScroll = ({target}) => {
-    let isMaxScrolled = target.scrollHeight - target.scrollTop === target.clientHeight
-    this.setState({isMaxScrolled})
-    if (this.state.unreadMessages && isMaxScrolled) {
-      this.setState({
-        unreadMessages: false
-      })
+const ChatWindow = forwardRef((props, ref) => (
+  <div id='chat-window' ref={ref} onScroll={props.handleScroll}>
+    <ActionCableConsumer
+      channel={{channel: 'MessagesChannel', chat_id: props.chat.id}}
+      onReceived={props.handleReceivedMessage}>
+      {
+        props.messages.map(m => <Message key={m.id} message={m} userId={props.userId} />)
+      }
+    </ActionCableConsumer>
+    {
+      props.unreadMessages &&
+      <UnreadMessagesAlert handleClick={props.scrollToBottom} />
     }
-  }
-
-  componentDidMount () {
-    this.scrollToBottom()
-  }
-
-  componentDidUpdate (prevProps) {
-    if (this.state.isMaxScrolled) {
-      this.scrollToBottom()
-    } else {
-      prevProps.messages.length < this.props.messages.length &&
-      this.setState({unreadMessages: true})
-    }
-  }
-
-  render() {
-    const { messages, userId, chat, handleReceivedMessage } = this.props
-    const { unreadMessages } = this.state
-    const { chatWindowRef, handleScroll, scrollToBottom } = this
-
-    return (
-      <div id='chat-window' ref={chatWindowRef} onScroll={handleScroll}>
-        <ActionCableConsumer
-          channel={{channel: 'MessagesChannel', chat_id: chat.id}}
-          onReceived={handleReceivedMessage}>
-          {
-            messages.map(m => <Message key={m.id} message={m} userId={userId} />)
-          }
-        </ActionCableConsumer>
-        {
-          unreadMessages &&
-          <UnreadMessagesAlert handleClick={scrollToBottom} />
-        }
-      </div>
-    )
-  }
-
-}
+  </div>
+))
 
 export default ChatWindow
