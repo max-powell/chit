@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 import NewChat from '../components/NewChat'
 
 class NewChatContainer extends Component {
@@ -11,13 +13,11 @@ class NewChatContainer extends Component {
   }
 
   componentDidMount () {
-    const config = {
-      headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    }
-
-    fetch('https://chit-api.herokuapp.com/api/v1/users', config)
+    if (localStorage.getItem('token')) {
+      fetch(`${API_ROOT}/users`, {headers: HEADERS()})
       .then(res => res.json())
       .then(users => this.setState({users}))
+    }
   }
 
   handleInputChange = ({target: {name, value}}) => {
@@ -46,16 +46,13 @@ class NewChatContainer extends Component {
 
     const config = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+      headers: HEADERS(),
       body: JSON.stringify({
         chat: newChat
       })
     }
 
-    fetch('https://chit-api.herokuapp.com/api/v1/chats/', config)
+    fetch(`${API_ROOT}/chats`, config)
       .then(res => res.json())
       .then(chat => {
         chat.error

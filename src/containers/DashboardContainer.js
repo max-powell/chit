@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 import Dashboard from '../components/Dashboard'
 import ChatDisplay from '../components/ChatDisplay'
 import LogoutButton from '../components/LogoutButton'
@@ -13,17 +15,15 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount () {
-    const config = {
-      headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    }
-
-    fetch('https://chit-api.herokuapp.com/api/v1/profile', config)
+    if (localStorage.getItem('token')) {
+      fetch(`${API_ROOT}/profile`, {headers: HEADERS()})
       .then(res => res.json())
       .then(({id: userId}) => this.setState({userId}))
 
-    fetch('https://chit-api.herokuapp.com/api/v1/chats', config)
+      fetch(`${API_ROOT}/chats`, {headers: HEADERS()})
       .then(res => res.json())
       .then(chats => this.setState({chats}))
+    }
   }
 
   selectChat = selectedChat => {this.setState({selectedChat})}
@@ -53,7 +53,7 @@ class DashboardContainer extends Component {
     this.props.routerProps.history.push('/login')
   }
 
-  logout = () => {
+  logout = async () => {
     localStorage.removeItem('token')
     this.pushToLogin()
   }

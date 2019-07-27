@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 import NewMessage from '../components/NewMessage'
 
 class NewMessageContainer extends Component {
@@ -15,16 +17,13 @@ class NewMessageContainer extends Component {
 
     const config = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+      headers: HEADERS(),
       body: JSON.stringify({
         ...this.state
       })
     }
 
-    fetch(`https://chit-api.herokuapp.com/api/v1/chats/${this.props.chat.id}/messages`, config)
+    fetch(`${API_ROOT}/chats/${this.props.chat.id}/messages`, config)
       .then(() =>this.setState({text: ''}))
   }
 
