@@ -41,21 +41,19 @@ class ChatWindowContainer extends Component {
 
   render() {
 
-    const { messages, chat, userId, handleReceivedMessage } = this.props
+    const { messages, userId } = this.props
     const { unreadMessages } = this.state
     const { chatWindowRef, scrollToBottom, handleScroll } = this
 
     return (
-      <ChatWindow
-        ref={chatWindowRef}
-        handleScroll={handleScroll}
-        chat={chat}
-        handleReceivedMessage={handleReceivedMessage}
-        messages={messages}
-        userId={userId}
-        unreadMessages={unreadMessages}
-        scrollToBottom={scrollToBottom}
-      />
+        <ChatWindow
+          ref={chatWindowRef}
+          handleScroll={handleScroll}
+          messages={messages}
+          userId={userId}
+          unreadMessages={unreadMessages}
+          scrollToBottom={scrollToBottom}
+        />
     )
   }
 
