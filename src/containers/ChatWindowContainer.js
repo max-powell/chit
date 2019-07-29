@@ -27,7 +27,7 @@ class ChatWindowContainer extends Component {
   }
 
   componentDidMount () {
-    // this.scrollToBottom()
+    this.scrollToBottom()
   }
 
   componentDidUpdate (prevProps) {
