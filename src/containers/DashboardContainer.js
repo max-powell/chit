@@ -4,6 +4,8 @@ import Dashboard from '../components/Dashboard'
 import ChatDisplay from '../components/ChatDisplay'
 import LogoutButton from '../components/LogoutButton'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 class DashboardContainer extends Component {
 
   state = {
@@ -14,14 +16,14 @@ class DashboardContainer extends Component {
 
   componentDidMount () {
     const config = {
-      headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+      headers: HEADERS()
     }
 
-    fetch('http://localhost:3000/api/v1/profile', config)
+    fetch(`${API_ROOT}/profile`, config)
       .then(res => res.json())
       .then(({id: userId}) => this.setState({userId}))
 
-    fetch('http://localhost:3000/api/v1/chats', config)
+    fetch(`${API_ROOT}/chats`, config)
       .then(res => res.json())
       .then(chats => this.setState({chats}))
   }

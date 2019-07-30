@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import NewMessage from '../components/NewMessage'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 class NewMessageContainer extends Component {
 
   state = {
@@ -15,16 +17,13 @@ class NewMessageContainer extends Component {
 
     const config = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+      headers: HEADERS(),
       body: JSON.stringify({
         ...this.state
       })
     }
 
-    fetch(`http://localhost:3000/api/v1/chats/${this.props.chat.id}/messages`, config)
+    fetch(`${API_ROOT}/chats/${this.props.chat.id}/messages`, config)
       .then(() =>this.setState({text: ''}))
   }
 

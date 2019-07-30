@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import Login from '../components/Login'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 class LoginContainer extends Component {
 
   state = {
@@ -18,14 +20,14 @@ class LoginContainer extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    let route = 'http://localhost:3000/api/v1/'
+    let route = API_ROOT
     e.target.name === 'login'
-    ? route += 'login'
-    : route += 'users'
+    ? route += '/login'
+    : route += '/users'
 
     const config = {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: HEADERS(),
       body: JSON.stringify({user: this.state})
     }
 

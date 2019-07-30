@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import NewChat from '../components/NewChat'
 
+import { API_ROOT, HEADERS } from '../api/constants'
+
 class NewChatContainer extends Component {
 
   state = {
@@ -12,10 +14,10 @@ class NewChatContainer extends Component {
 
   componentDidMount () {
     const config = {
-      headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+      headers: HEADERS()
     }
 
-    fetch('http://localhost:3000/api/v1/users', config)
+    fetch(`${API_ROOT}/users`, config)
       .then(res => res.json())
       .then(users => this.setState({users}))
   }
@@ -46,16 +48,13 @@ class NewChatContainer extends Component {
 
     const config = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+      headers: HEADERS(),
       body: JSON.stringify({
         chat: newChat
       })
     }
 
-    fetch('http://localhost:3000/api/v1/chats/', config)
+    fetch(`${API_ROOT}/chats`, config)
       .then(res => res.json())
       .then(chat => {
         chat.error
